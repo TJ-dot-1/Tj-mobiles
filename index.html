@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJ Mobile Products - Kenya</title>
+    <title>TJ Mobiles - Premium Mobile Phones in Kenya</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #3498db;
             --secondary: #2c3e50;
+            --accent: #e74c3c;
             --light: #ecf0f1;
             --dark: #34495e;
             --success: #2ecc71;
             --danger: #e74c3c;
             --warning: #f39c12;
+            --text: #333;
+            --bg: #f8f9fa;
         }
         
         * {
@@ -24,16 +27,20 @@
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
         
+        /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--secondary), var(--dark));
             color: white;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .container {
@@ -49,33 +56,130 @@
             align-items: center;
         }
         
-        h1 {
-            font-size: 1.8rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .admin-toggle {
-            background-color: var(--primary);
-            color: white;
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 15px;
             border: none;
-            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
         }
         
-        .admin-toggle:hover {
-            background-color: #2980b9;
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
         
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-call {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-call:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .cart-btn {
+            position: relative;
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 12px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Admin Panel */
         .admin-panel {
             background-color: white;
             padding: 20px;
             margin: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             display: none;
         }
         
@@ -103,52 +207,14 @@
             font-size: 1rem;
         }
         
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2980b9;
-        }
-        
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-        
-        .btn-success {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #27ae60;
-        }
-        
+        /* Filters */
         .filters {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             margin: 20px 0;
             background-color: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -158,39 +224,60 @@
             min-width: 150px;
         }
         
+        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin: 20px 0;
         }
         
         .product-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         .product-image {
-            height: 180px;
+            height: 200px;
             background-color: #f8f9fa;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
         
         .product-image img {
             max-width: 80%;
             max-height: 80%;
             object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
         
         .product-header {
@@ -212,6 +299,7 @@
         
         .product-details {
             padding: 15px;
+            flex-grow: 1;
         }
         
         .product-spec {
@@ -221,15 +309,41 @@
         }
         
         .product-price {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary);
             margin: 10px 0;
         }
         
-        .currency {
-            font-size: 0.9rem;
-            color: #666;
+        .product-actions {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .btn-add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-add-to-cart:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-quick-view {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-quick-view:hover {
+            background-color: var(--primary);
+            color: white;
         }
         
         .admin-actions {
@@ -239,10 +353,256 @@
             justify-content: flex-end;
         }
         
-        .hidden {
+        /* Cart Modal */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
         }
         
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .cart-items {
+            margin: 20px 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .cart-item-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            background-color: var(--light);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .checkout-btn {
+            background-color: var(--success);
+            color: white;
+            width: 100%;
+            justify-content: center;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Quick View Modal */
+        .quick-view-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .quick-view-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .quick-view-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        
+        .quick-view-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .quick-view-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .quick-view-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        
+        .specs-list {
+            margin: 20px 0;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .spec-value {
+            color: var(--text);
+        }
+        
+        .product-description {
+            margin: 20px 0;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #bbb;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Notification */
         .notification {
             position: fixed;
             top: 20px;
@@ -284,6 +644,10 @@
             color: var(--danger);
         }
         
+        .hidden {
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -297,22 +661,84 @@
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .quick-view-content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="notification" id="notification"></div>
     
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCart">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here -->
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">KSH 0</span>
+            </div>
+            <button class="btn checkout-btn" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+    
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeQuickView">&times;</span>
+            <div class="quick-view-content" id="quickViewContent">
+                <!-- Quick view content will be added here -->
+            </div>
+        </div>
+    </div>
+    
     <header>
         <div class="container">
             <div class="header-content">
-                <h1><i class="fas fa-mobile-alt"></i> TJ Mobiles - Kenya</h1>
-                <button class="admin-toggle" id="adminToggle">
-                    <i class="fas fa-user-cog"></i> Admin Panel
-                </button>
+                <div class="logo">
+                    <i class="fas fa-mobile-alt logo-icon"></i>
+                    <h1>TJ Mobiles</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-call" id="callInfoBtn">
+                        <i class="fas fa-phone-alt"></i> Call: 0706667129
+                    </button>
+                    <button class="btn cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="btn btn-primary" id="adminToggle">
+                        <i class="fas fa-user-cog"></i> Admin
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Premium Mobile Phones at Unbeatable Prices</h2>
+            <p>Discover the latest smartphones from top brands with exclusive deals and fast delivery across Kenya</p>
+            <button class="btn btn-primary" id="shopNowBtn">
+                <i class="fas fa-shopping-bag"></i> Shop Now
+            </button>
+        </div>
+    </section>
     
     <div class="container">
         <div class="admin-panel" id="adminPanel">
@@ -346,6 +772,7 @@
                             <option value="Samsung">Samsung</option>
                             <option value="Apple">Apple</option>
                             <option value="Google">Google</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -402,10 +829,283 @@
             <!-- Products will be dynamically added here -->
         </div>
     </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TJ Mobiles</h3>
+                    <p>Your trusted partner for premium mobile phones in Kenya. We offer the latest smartphones at competitive prices with excellent customer service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Products</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone"></i> 0706667129</p>
+                    <p><i class="fas fa-envelope"></i> info@tjmobiles.co.ke</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 TJ Mobiles. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Admin passcode
         const ADMIN_PASSCODE = "12340";
+        
+        // Contact number for call button
+        const CONTACT_NUMBER = '0706667129';
+        
+        // Shopping cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Product details database
+        const productDetails = {
+            // Samsung devices
+            "Galaxy A54": {
+                display: "6.4-inch Super AMOLED, 120Hz",
+                camera: "50MP Main + 12MP Ultra Wide + 5MP Macro",
+                battery: "5000mAh",
+                processor: "Exynos 1380",
+                ram: "6GB/8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "The Samsung Galaxy A54 5G offers a premium experience with its vibrant display, versatile camera system, and long-lasting battery life."
+            },
+            "S20 FE": {
+                display: "6.5-inch Super AMOLED, 120Hz",
+                camera: "12MP Main + 12MP Ultra Wide + 8MP Telephoto",
+                battery: "4500mAh",
+                processor: "Snapdragon 865",
+                ram: "6GB/8GB",
+                os: "Android 12 with One UI 4.1",
+                description: "The Galaxy S20 FE brings flagship features at a more accessible price point with a versatile triple camera and smooth 120Hz display."
+            },
+            "S20": {
+                display: "6.2-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "12MP Main + 64MP Telephoto + 12MP Ultra Wide",
+                battery: "4000mAh",
+                processor: "Exynos 990 / Snapdragon 865",
+                ram: "8GB/12GB",
+                os: "Android 12 with One UI 4.1",
+                description: "The compact flagship with premium features including a versatile camera system and stunning 120Hz display."
+            },
+            "S20 Plus": {
+                display: "6.7-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "12MP Main + 64MP Telephoto + 12MP Ultra Wide + Depth Vision",
+                battery: "4500mAh",
+                processor: "Exynos 990 / Snapdragon 865",
+                ram: "8GB/12GB",
+                os: "Android 12 with One UI 4.1",
+                description: "The larger sibling of the S20 with additional camera features and a bigger battery for extended usage."
+            },
+            "Note 20 Ultra": {
+                display: "6.9-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "108MP Main + 12MP Periscope Telephoto + 12MP Ultra Wide",
+                battery: "4500mAh",
+                processor: "Exynos 990 / Snapdragon 865+",
+                ram: "12GB",
+                os: "Android 12 with One UI 4.1",
+                description: "The ultimate productivity phone with S Pen support, professional-grade camera, and premium design."
+            },
+            "Note 10": {
+                display: "6.3-inch Dynamic AMOLED",
+                camera: "12MP Main + 16MP Ultra Wide + 12MP Telephoto",
+                battery: "3500mAh",
+                processor: "Exynos 9825 / Snapdragon 855",
+                ram: "8GB/12GB",
+                os: "Android 12 with One UI 4.1",
+                description: "Compact Note experience with S Pen functionality and premium design in a smaller form factor."
+            },
+            "S21": {
+                display: "6.2-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "12MP Main + 64MP Telephoto + 12MP Ultra Wide",
+                battery: "4000mAh",
+                processor: "Exynos 2100 / Snapdragon 888",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Refined design with powerful performance and improved camera capabilities in a compact form factor."
+            },
+            "S21 Plus": {
+                display: "6.7-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "12MP Main + 64MP Telephoto + 12MP Ultra Wide",
+                battery: "4800mAh",
+                processor: "Exynos 2100 / Snapdragon 888",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Larger display and battery than the S21 while maintaining the same powerful performance and camera system."
+            },
+            "S21 Ultra": {
+                display: "6.8-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "108MP Main + 10MP Periscope Telephoto + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "5000mAh",
+                processor: "Exynos 2100 / Snapdragon 888",
+                ram: "12GB/16GB",
+                os: "Android 13 with One UI 5.1",
+                description: "The ultimate Samsung flagship with professional-grade camera system, S Pen support, and top-tier performance."
+            },
+            "S22": {
+                display: "6.1-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "50MP Main + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "3700mAh",
+                processor: "Snapdragon 8 Gen 1",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Compact flagship with improved camera system and brighter display for better outdoor visibility."
+            },
+            "S22 Plus": {
+                display: "6.6-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "50MP Main + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "4500mAh",
+                processor: "Snapdragon 8 Gen 1",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Balanced flagship with larger display and battery than S22 while maintaining the same powerful camera system."
+            },
+            "S22 Ultra": {
+                display: "6.8-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "108MP Main + 10MP Periscope Telephoto + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "5000mAh",
+                processor: "Snapdragon 8 Gen 1",
+                ram: "8GB/12GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Note-inspired design with built-in S Pen, professional camera system, and top-tier performance."
+            },
+            "S23": {
+                display: "6.1-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "50MP Main + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "3900mAh",
+                processor: "Snapdragon 8 Gen 2",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Refined compact flagship with improved battery life and more efficient performance."
+            },
+            "S23 Plus": {
+                display: "6.6-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "50MP Main + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "4700mAh",
+                processor: "Snapdragon 8 Gen 2",
+                ram: "8GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Larger variant with improved battery life and the same powerful camera system as the S23."
+            },
+            "S23 Ultra": {
+                display: "6.8-inch Dynamic AMOLED 2X, 120Hz",
+                camera: "200MP Main + 10MP Periscope Telephoto + 10MP Telephoto + 12MP Ultra Wide",
+                battery: "5000mAh",
+                processor: "Snapdragon 8 Gen 2",
+                ram: "8GB/12GB",
+                os: "Android 13 with One UI 5.1",
+                description: "Ultimate Samsung flagship with groundbreaking 200MP camera, built-in S Pen, and top-tier performance."
+            },
+            
+            // Apple devices
+            "iPhone 12": {
+                display: "6.1-inch Super Retina XDR OLED",
+                camera: "12MP Main + 12MP Ultra Wide",
+                battery: "2815mAh",
+                processor: "A14 Bionic",
+                ram: "4GB",
+                os: "iOS 17",
+                description: "The iPhone 12 features a beautiful OLED display, 5G connectivity, and the powerful A14 Bionic chip."
+            },
+            "iPhone 12 Pro": {
+                display: "6.1-inch Super Retina XDR OLED",
+                camera: "12MP Main + 12MP Telephoto + 12MP Ultra Wide + LiDAR",
+                battery: "2815mAh",
+                processor: "A14 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Pro camera system with LiDAR scanner, premium design with stainless steel frame, and advanced computational photography."
+            },
+            "iPhone 12 Pro Max": {
+                display: "6.7-inch Super Retina XDR OLED",
+                camera: "12MP Main + 12MP Telephoto + 12MP Ultra Wide + LiDAR",
+                battery: "3687mAh",
+                processor: "A14 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Largest iPhone 12 with the most advanced camera system, larger sensor for better low-light performance."
+            },
+            "iPhone 13": {
+                display: "6.1-inch Super Retina XDR OLED",
+                camera: "12MP Main + 12MP Ultra Wide",
+                battery: "3240mAh",
+                processor: "A15 Bionic",
+                ram: "4GB",
+                os: "iOS 17",
+                description: "Improved battery life, advanced dual-camera system with sensor-shift stabilization, and powerful A15 Bionic chip."
+            },
+            "iPhone 13 Pro": {
+                display: "6.1-inch Super Retina XDR OLED with ProMotion",
+                camera: "12MP Main + 12MP Telephoto + 12MP Ultra Wide + LiDAR",
+                battery: "3095mAh",
+                processor: "A15 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "ProMotion display with 120Hz refresh rate, pro camera system with macro photography, and cinematic mode."
+            },
+            "iPhone 13 Pro Max": {
+                display: "6.7-inch Super Retina XDR OLED with ProMotion",
+                camera: "12MP Main + 12MP Telephoto + 12MP Ultra Wide + LiDAR",
+                battery: "4352mAh",
+                processor: "A15 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Largest iPhone 13 with the best battery life, pro camera system, and ProMotion display technology."
+            },
+            "iPhone 14": {
+                display: "6.1-inch Super Retina XDR OLED",
+                camera: "12MP Main + 12MP Ultra Wide",
+                battery: "3279mAh",
+                processor: "A15 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Enhanced safety features with crash detection, improved main camera, and action mode for stable video."
+            },
+            "iPhone 14 Pro": {
+                display: "6.1-inch Super Retina XDR OLED with Always-On and ProMotion",
+                camera: "48MP Main + 12MP Telephoto + 12MP Ultra Wide",
+                battery: "3200mAh",
+                processor: "A16 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Dynamic Island, Always-On display, 48MP main camera, and advanced pro features."
+            },
+            "iPhone 14 Pro Max": {
+                display: "6.7-inch Super Retina XDR OLED with Always-On and ProMotion",
+                camera: "48MP Main + 12MP Telephoto + 12MP Ultra Wide",
+                battery: "4323mAh",
+                processor: "A16 Bionic",
+                ram: "6GB",
+                os: "iOS 17",
+                description: "Largest iPhone 14 with the best battery life, Dynamic Island, and professional 48MP camera system."
+            },
+            
+            // Google devices
+            "Pixel 6 Pro": {
+                display: "6.7-inch LTPO OLED, 120Hz",
+                camera: "50MP Main + 48MP Telephoto + 12MP Ultra Wide",
+                battery: "5003mAh",
+                processor: "Google Tensor",
+                ram: "12GB",
+                os: "Android 14",
+                description: "Google's flagship with custom Tensor chip, advanced computational photography, and smooth 120Hz display."
+            }
+        };
         
         // Initial product data with Kenyan Shilling prices and image URLs
         const initialProducts = [
@@ -470,6 +1170,18 @@
         const authButton = document.getElementById('authButton');
         const authStatus = document.getElementById('authStatus');
         const notification = document.getElementById('notification');
+        const callInfoBtn = document.getElementById('callInfoBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.getElementById('cartCount');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const shopNowBtn = document.getElementById('shopNowBtn');
+        const quickViewModal = document.getElementById('quickViewModal');
+        const closeQuickView = document.getElementById('closeQuickView');
+        const quickViewContent = document.getElementById('quickViewContent');
         
         // Toggle admin panel
         adminToggle.addEventListener('click', () => {
@@ -508,7 +1220,7 @@
             const name = document.getElementById('productName').value;
             const brand = document.getElementById('productBrand').value;
             const storage = document.getElementById('productStorage').value;
-            const price = parseFloat(document.getElementById('productPrice').value);
+            let price = parseFloat(document.getElementById('productPrice').value);
             const image = document.getElementById('productImage').value || "https://via.placeholder.com/300x300?text=No+Image";
             
             const newProduct = {
@@ -528,10 +1240,250 @@
             // Reset form
             productForm.reset();
         });
+
+        // Call for Info button handler
+        callInfoBtn.addEventListener('click', () => {
+            window.location.href = `tel:${CONTACT_NUMBER}`;
+        });
+        
+        // Cart functionality
+        cartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+            renderCart();
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        // Quick View functionality
+        closeQuickView.addEventListener('click', () => {
+            quickViewModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+            if (e.target === quickViewModal) {
+                quickViewModal.style.display = 'none';
+            }
+        });
+        
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification("Your cart is empty", "error");
+                return;
+            }
+            
+            showNotification("Proceeding to checkout...", "success");
+            // In a real application, you would redirect to a checkout page
+            setTimeout(() => {
+                cartModal.style.display = 'none';
+            }, 2000);
+        });
+        
+        shopNowBtn.addEventListener('click', () => {
+            document.querySelector('.filters').scrollIntoView({ behavior: 'smooth' });
+        });
         
         // Save products to localStorage
         function saveProducts() {
             localStorage.setItem('mobileProducts', JSON.stringify(products));
+        }
+        
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        // Add to cart
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartCount();
+            showNotification(`${product.name} added to cart`, "success");
+        }
+        
+        // Remove from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartCount();
+            renderCart();
+            showNotification("Item removed from cart", "success");
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+        }
+        
+        // Render cart
+        function renderCart() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+                cartTotal.textContent = 'KSH 0';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">KSH ${formatPrice(item.price)}</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="quantity-control">
+                            <button class="quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                        </div>
+                        <button class="btn btn-danger" data-id="${item.id}" data-action="remove">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = `KSH ${formatPrice(total)}`;
+            
+            // Add event listeners to cart item buttons
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    const action = e.target.getAttribute('data-action');
+                    updateCartItemQuantity(productId, action);
+                });
+            });
+            
+            document.querySelectorAll('.btn-danger[data-action="remove"]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.btn-danger').getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+        
+        // Update cart item quantity
+        function updateCartItemQuantity(productId, action) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (action === 'increase') {
+                item.quantity += 1;
+            } else if (action === 'decrease') {
+                item.quantity -= 1;
+                if (item.quantity === 0) {
+                    removeFromCart(productId);
+                    return;
+                }
+            }
+            
+            saveCart();
+            updateCartCount();
+            renderCart();
+        }
+        
+        // Show quick view
+        function showQuickView(product) {
+            const details = productDetails[product.name] || {
+                display: "Information not available",
+                camera: "Information not available",
+                battery: "Information not available",
+                processor: "Information not available",
+                ram: "Information not available",
+                os: "Information not available",
+                description: "Detailed information about this product is not currently available."
+            };
+            
+            quickViewContent.innerHTML = `
+                <div class="quick-view-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="quick-view-details">
+                    <h3>${product.name}</h3>
+                    <div class="quick-view-price">KSH ${formatPrice(product.price)}</div>
+                    
+                    <div class="specs-list">
+                        <div class="spec-item">
+                            <span class="spec-label">Brand:</span>
+                            <span class="spec-value">${product.brand}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">${product.storage}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Display:</span>
+                            <span class="spec-value">${details.display}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Camera:</span>
+                            <span class="spec-value">${details.camera}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Battery:</span>
+                            <span class="spec-value">${details.battery}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">${details.processor}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">RAM:</span>
+                            <span class="spec-value">${details.ram}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Operating System:</span>
+                            <span class="spec-value">${details.os}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-description">
+                        <p>${details.description}</p>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-add-to-cart" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listener to add to cart button in quick view
+            document.querySelector('.quick-view-details .btn-add-to-cart').addEventListener('click', () => {
+                addToCart(product);
+                quickViewModal.style.display = 'none';
+            });
+            
+            quickViewModal.style.display = 'flex';
         }
         
         // Render products based on filters
@@ -566,9 +1518,18 @@
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 
+                // Determine badge text based on price
+                let badgeText = '';
+                if (product.price < 30000) {
+                    badgeText = 'Budget';
+                } else if (product.price > 70000) {
+                    badgeText = 'Premium';
+                }
+                
                 productCard.innerHTML = `
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}">
+                        ${badgeText ? `<div class="product-badge">${badgeText}</div>` : ''}
                     </div>
                     <div class="product-header">
                         <div class="product-name">${product.name}</div>
@@ -581,6 +1542,14 @@
                         </div>
                         <div class="product-price">KSH ${formatPrice(product.price)}</div>
                     </div>
+                    <div class="product-actions">
+                        <button class="btn btn-add-to-cart" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-quick-view" data-id="${product.id}">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
+                    </div>
                     <div class="admin-actions hidden">
                         <button class="btn btn-danger" data-id="${product.id}">
                             <i class="fas fa-trash"></i> Remove
@@ -589,6 +1558,24 @@
                 `;
                 
                 productsGrid.appendChild(productCard);
+            });
+            
+            // Add event listeners to add to cart buttons
+            document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.btn-add-to-cart').getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    addToCart(product);
+                });
+            });
+            
+            // Add event listeners to quick view buttons
+            document.querySelectorAll('.btn-quick-view').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.target.closest('.btn-quick-view').getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    showQuickView(product);
+                });
             });
             
             // Add event listeners to remove buttons
@@ -607,9 +1594,9 @@
             updateAdminActionsVisibility();
         }
         
-        // Format price for display
+        // Format price for display (whole numbers only)
         function formatPrice(price) {
-            return price.toLocaleString('en-KE');
+            return Math.round(price).toLocaleString('en-KE');
         }
         
         // Remove product
@@ -644,6 +1631,7 @@
         priceFilter.addEventListener('change', renderProducts);
         
         // Initial render
+        updateCartCount();
         renderProducts();
     </script>
 </body>
