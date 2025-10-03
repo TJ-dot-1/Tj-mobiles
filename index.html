@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ Mobile Products - Kenya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .admin-toggle {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-toggle:hover {
+            background-color: #2980b9;
+        }
+        
+        .admin-panel {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .auth-section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        
+        .product-header {
+            padding: 15px;
+            background-color: var(--light);
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .product-brand {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .product-details {
+            padding: 15px;
+        }
+        
+        .product-spec {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .currency {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .admin-actions {
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: var(--danger);
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        
+        .auth-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .auth-status.authenticated {
+            color: var(--success);
+        }
+        
+        .auth-status.not-authenticated {
+            color: var(--danger);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filters {
+                flex-direction: column;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notification" id="notification"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-mobile-alt"></i> TJ Mobiles - Kenya</h1>
+                <button class="admin-toggle" id="adminToggle">
+                    <i class="fas fa-user-cog"></i> Admin Panel
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="admin-panel" id="adminPanel">
+            <h2><i class="fas fa-cogs"></i> Admin Panel</h2>
+            
+            <div class="auth-section">
+                <h3>Authentication</h3>
+                <div class="form-group">
+                    <label for="adminPasscode">Enter Admin Passcode</label>
+                    <input type="password" id="adminPasscode" placeholder="Enter passcode to enable editing">
+                </div>
+                <button class="btn btn-primary" id="authButton">
+                    <i class="fas fa-key"></i> Authenticate
+                </button>
+                <div class="auth-status not-authenticated" id="authStatus">
+                    <i class="fas fa-times-circle"></i> Not authenticated
+                </div>
+            </div>
+            
+            <div id="adminControls" class="hidden">
+                <h3>Add New Product</h3>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productBrand">Brand</label>
+                        <select id="productBrand" required>
+                            <option value="">Select Brand</option>
+                            <option value="Samsung">Samsung</option>
+                            <option value="Apple">Apple</option>
+                            <option value="Google">Google</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productStorage">Storage</label>
+                        <input type="text" id="productStorage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price (in KSH)</label>
+                        <input type="number" id="productPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image URL</label>
+                        <input type="text" id="productImage" placeholder="Paste image URL here">
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-plus-circle"></i> Add Product
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="brandFilter">Brand</label>
+                <select id="brandFilter">
+                    <option value="">All Brands</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Google">Google</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="storageFilter">Storage</label>
+                <select id="storageFilter">
+                    <option value="">All Storage</option>
+                    <option value="128">128GB</option>
+                    <option value="256">256GB</option>
+                    <option value="512">512GB</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="priceFilter">Price Range</label>
+                <select id="priceFilter">
+                    <option value="">All Prices</option>
+                    <option value="0-30000">Under KSH 30,000</option>
+                    <option value="30000-50000">KSH 30,000 - 50,000</option>
+                    <option value="50000-70000">KSH 50,000 - 70,000</option>
+                    <option value="70000-100000">KSH 70,000+</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        // Admin passcode
+        const ADMIN_PASSCODE = "12340";
+        
+        // Initial product data with Kenyan Shilling prices and image URLs
+        const initialProducts = [
+            { id: 1, name: "Galaxy A54", brand: "Samsung", storage: "128GB", price: 30500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/2302/gallery/ke-galaxy-a54-5g-sm-a546elbgafr-534866917" },
+            { id: 2, name: "S20 FE", brand: "Samsung", storage: "128GB", price: 25500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g780fzbdafr/gallery/ke-galaxy-s20-fe-5g-sm-g780-399951-sm-g780fzbdafr-534349708" },
+            { id: 3, name: "S20", brand: "Samsung", storage: "128GB", price: 29500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g980fzsdafr/gallery/ke-galaxy-s20-5g-sm-g980-399951-sm-g980fzsdafr-534349708" },
+            { id: 4, name: "S20 Plus", brand: "Samsung", storage: "128GB", price: 34000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g985fzsdafr/gallery/ke-galaxy-s20-plus-5g-sm-g985-399951-sm-g985fzsdafr-534349708" },
+            { id: 5, name: "Note 20 Ultra", brand: "Samsung", storage: "128GB", price: 47000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-n985fzsdafr/gallery/ke-galaxy-note20-ultra-5g-sm-n985-399951-sm-n985fzsdafr-534349708" },
+            { id: 6, name: "Note 10", brand: "Samsung", storage: "128GB", price: 30000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-n970fzsdafr/gallery/ke-galaxy-note10-5g-sm-n970-399951-sm-n970fzsdafr-534349708" },
+            { id: 7, name: "S21", brand: "Samsung", storage: "128GB", price: 30000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g991bzsdfrr/gallery/ke-galaxy-s21-5g-sm-g991-399951-sm-g991bzsdfrr-534349708" },
+            { id: 8, name: "S21", brand: "Samsung", storage: "256GB", price: 32000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g991bzsdfrr/gallery/ke-galaxy-s21-5g-sm-g991-399951-sm-g991bzsdfrr-534349708" },
+            { id: 9, name: "S21 Plus", brand: "Samsung", storage: "128GB", price: 34000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g996bzsdfrr/gallery/ke-galaxy-s21-plus-5g-sm-g996-399951-sm-g996bzsdfrr-534349708" },
+            { id: 10, name: "S21 Plus", brand: "Samsung", storage: "256GB", price: 35500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g996bzsdfrr/gallery/ke-galaxy-s21-plus-5g-sm-g996-399951-sm-g996bzsdfrr-534349708" },
+            { id: 11, name: "S21 Ultra", brand: "Samsung", storage: "128GB", price: 40500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g998bzsdfrr/gallery/ke-galaxy-s21-ultra-5g-sm-g998-399951-sm-g998bzsdfrr-534349708" },
+            { id: 12, name: "S21 Ultra", brand: "Samsung", storage: "256GB", price: 47000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-g998bzsdfrr/gallery/ke-galaxy-s21-ultra-5g-sm-g998-399951-sm-g998bzsdfrr-534349708" },
+            { id: 13, name: "S22", brand: "Samsung", storage: "128GB", price: 35000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s901ezsdafr/gallery/ke-galaxy-s22-5g-sm-s901-399951-sm-s901ezsdafr-534349708" },
+            { id: 14, name: "S22", brand: "Samsung", storage: "256GB", price: 39000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s901ezsdafr/gallery/ke-galaxy-s22-5g-sm-s901-399951-sm-s901ezsdafr-534349708" },
+            { id: 15, name: "S22 Plus", brand: "Samsung", storage: "128GB", price: 35000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s906ezsdafr/gallery/ke-galaxy-s22-plus-5g-sm-s906-399951-sm-s906ezsdafr-534349708" },
+            { id: 16, name: "S22 Plus", brand: "Samsung", storage: "256GB", price: 38000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s906ezsdafr/gallery/ke-galaxy-s22-plus-5g-sm-s906-399951-sm-s906ezsdafr-534349708" },
+            { id: 17, name: "S22 Ultra", brand: "Samsung", storage: "128GB", price: 65000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s908ezsdafr/gallery/ke-galaxy-s22-ultra-5g-sm-s908-399951-sm-s908ezsdafr-534349708" },
+            { id: 18, name: "S22 Ultra", brand: "Samsung", storage: "256GB", price: 68000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s908ezsdafr/gallery/ke-galaxy-s22-ultra-5g-sm-s908-399951-sm-s908ezsdafr-534349708" },
+            { id: 19, name: "S22 Ultra", brand: "Samsung", storage: "512GB", price: 62000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s908ezsdafr/gallery/ke-galaxy-s22-ultra-5g-sm-s908-399951-sm-s908ezsdafr-534349708" },
+            { id: 20, name: "S23", brand: "Samsung", storage: "128GB", price: 47000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s911ezvdafr/gallery/ke-galaxy-s23-5g-sm-s911-534866917" },
+            { id: 21, name: "S23", brand: "Samsung", storage: "256GB", price: 50500, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s911ezvdafr/gallery/ke-galaxy-s23-5g-sm-s911-534866917" },
+            { id: 22, name: "S23 Plus", brand: "Samsung", storage: "256GB", price: 52000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s916ezvdafr/gallery/ke-galaxy-s23-plus-5g-sm-s916-534866917" },
+            { id: 23, name: "S23 Ultra", brand: "Samsung", storage: "256GB", price: 73000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s918ezvdafr/gallery/ke-galaxy-s23-ultra-5g-sm-s918-534866917" },
+            { id: 24, name: "S23 Ultra", brand: "Samsung", storage: "512GB", price: 78000, image: "https://images.samsung.com/is/image/samsung/p6pim/ke/sm-s918ezvdafr/gallery/ke-galaxy-s23-ultra-5g-sm-s918-534866917" },
+            { id: 25, name: "Pixel 6 Pro", brand: "Google", storage: "128GB", price: 33000, image: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_Pixel_6_Pro.max-1000x1000.jpg" },
+            { id: 26, name: "Pixel 6 Pro", brand: "Google", storage: "256GB", price: 38000, image: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_Pixel_6_Pro.max-1000x1000.jpg" },
+            { id: 27, name: "iPhone 12", brand: "Apple", storage: "128GB", price: 45000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343704000" },
+            { id: 28, name: "iPhone 12", brand: "Apple", storage: "256GB", price: 49000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=940&hei=1112&fmt=png-alpha&.v=1604343704000" },
+            { id: 29, name: "iPhone 12 Pro", brand: "Apple", storage: "128GB", price: 48500, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+            { id: 30, name: "iPhone 12 Pro", brand: "Apple", storage: "256GB", price: 51000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+            { id: 31, name: "iPhone 12 Pro Max", brand: "Apple", storage: "256GB", price: 65000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-max-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+            { id: 32, name: "iPhone 13", brand: "Apple", storage: "128GB", price: 51000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pink-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1623707846000" },
+            { id: 33, name: "iPhone 13", brand: "Apple", storage: "256GB", price: 53000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pink-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1623707846000" },
+            { id: 34, name: "iPhone 13 Pro", brand: "Apple", storage: "128GB", price: 60000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1631652956000" },
+            { id: 35, name: "iPhone 13 Pro", brand: "Apple", storage: "256GB", price: 65000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1631652956000" },
+            { id: 36, name: "iPhone 13 Pro Max", brand: "Apple", storage: "256GB", price: 80000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-silver-select?wid=940&hei=1112&fmt=png-alpha&.v=1631652956000" },
+            { id: 37, name: "iPhone 14", brand: "Apple", storage: "128GB", price: 57500, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-storage-select-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660689593121" },
+            { id: 38, name: "iPhone 14", brand: "Apple", storage: "256GB", price: 65500, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-storage-select-202209?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660689593121" },
+            { id: 39, name: "iPhone 14 Pro", brand: "Apple", storage: "256GB", price: 80000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-deep-purple-select?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660757373882" },
+            { id: 40, name: "iPhone 14 Pro Max", brand: "Apple", storage: "256GB", price: 94000, image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-deep-purple-select?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660757377492" }
+        ];
+
+        // Load products from localStorage or use initial data
+        let products = JSON.parse(localStorage.getItem('mobileProducts')) || initialProducts;
+        
+        // Admin authentication state
+        let isAuthenticated = false;
+        
+        // DOM elements
+        const adminToggle = document.getElementById('adminToggle');
+        const adminPanel = document.getElementById('adminPanel');
+        const adminControls = document.getElementById('adminControls');
+        const productForm = document.getElementById('productForm');
+        const productsGrid = document.getElementById('productsGrid');
+        const brandFilter = document.getElementById('brandFilter');
+        const storageFilter = document.getElementById('storageFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const adminPasscode = document.getElementById('adminPasscode');
+        const authButton = document.getElementById('authButton');
+        const authStatus = document.getElementById('authStatus');
+        const notification = document.getElementById('notification');
+        
+        // Toggle admin panel
+        adminToggle.addEventListener('click', () => {
+            adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+            updateAdminActionsVisibility();
+        });
+        
+        // Authenticate admin
+        authButton.addEventListener('click', () => {
+            if (adminPasscode.value === ADMIN_PASSCODE) {
+                isAuthenticated = true;
+                adminControls.classList.remove('hidden');
+                authStatus.textContent = "Authenticated";
+                authStatus.className = "auth-status authenticated";
+                authStatus.innerHTML = '<i class="fas fa-check-circle"></i> Authenticated';
+                showNotification("Admin access granted", "success");
+            } else {
+                isAuthenticated = false;
+                adminControls.classList.add('hidden');
+                authStatus.textContent = "Invalid passcode";
+                authStatus.className = "auth-status not-authenticated";
+                authStatus.innerHTML = '<i class="fas fa-times-circle"></i> Invalid passcode';
+                showNotification("Invalid passcode", "error");
+            }
+        });
+        
+        // Add new product
+        productForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                showNotification("Please authenticate first", "error");
+                return;
+            }
+            
+            const name = document.getElementById('productName').value;
+            const brand = document.getElementById('productBrand').value;
+            const storage = document.getElementById('productStorage').value;
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const image = document.getElementById('productImage').value || "https://via.placeholder.com/300x300?text=No+Image";
+            
+            const newProduct = {
+                id: Date.now(), // Simple ID generation
+                name,
+                brand,
+                storage,
+                price,
+                image
+            };
+            
+            products.push(newProduct);
+            saveProducts();
+            renderProducts();
+            showNotification("Product added successfully", "success");
+            
+            // Reset form
+            productForm.reset();
+        });
+        
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('mobileProducts', JSON.stringify(products));
+        }
+        
+        // Render products based on filters
+        function renderProducts() {
+            const brandValue = brandFilter.value;
+            const storageValue = storageFilter.value;
+            const priceValue = priceFilter.value;
+            
+            // Filter products
+            const filteredProducts = products.filter(product => {
+                // Brand filter
+                if (brandValue && product.brand !== brandValue) return false;
+                
+                // Storage filter
+                if (storageValue && !product.storage.includes(storageValue)) return false;
+                
+                // Price filter
+                if (priceValue) {
+                    const [min, max] = priceValue.split('-').map(Number);
+                    if (max && (product.price < min || product.price > max)) return false;
+                    if (!max && product.price < min) return false;
+                }
+                
+                return true;
+            });
+            
+            // Clear grid
+            productsGrid.innerHTML = '';
+            
+            // Add products to grid
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-header">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-brand">${product.brand}</div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-spec">
+                            <span>Storage:</span>
+                            <span>${product.storage}</span>
+                        </div>
+                        <div class="product-price">KSH ${formatPrice(product.price)}</div>
+                    </div>
+                    <div class="admin-actions hidden">
+                        <button class="btn btn-danger" data-id="${product.id}">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.btn-danger').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    if (!isAuthenticated) {
+                        showNotification("Please authenticate first", "error");
+                        return;
+                    }
+                    
+                    const productId = parseInt(e.target.closest('.btn-danger').getAttribute('data-id'));
+                    removeProduct(productId);
+                });
+            });
+            
+            updateAdminActionsVisibility();
+        }
+        
+        // Format price for display
+        function formatPrice(price) {
+            return price.toLocaleString('en-KE');
+        }
+        
+        // Remove product
+        function removeProduct(id) {
+            products = products.filter(product => product.id !== id);
+            saveProducts();
+            renderProducts();
+            showNotification("Product removed successfully", "success");
+        }
+        
+        // Update admin actions visibility
+        function updateAdminActionsVisibility() {
+            const adminActions = document.querySelectorAll('.admin-actions');
+            adminActions.forEach(action => {
+                action.classList.toggle('hidden', !isAuthenticated || adminPanel.style.display !== 'block');
+            });
+        }
+        
+        // Show notification
+        function showNotification(message, type) {
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Event listeners for filters
+        brandFilter.addEventListener('change', renderProducts);
+        storageFilter.addEventListener('change', renderProducts);
+        priceFilter.addEventListener('change', renderProducts);
+        
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
