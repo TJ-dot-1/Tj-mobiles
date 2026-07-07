@@ -82,11 +82,14 @@ export function ServicesSection() {
                         <div className="text-sm text-muted-foreground">
                           Takes approx. <span className="font-bold text-foreground">{service.time}</span>
                         </div>
-                        <Button asChild className="bg-primary hover:bg-primary/90 text-white rounded-xl">
-                          <a href="https://wa.me/254706667129" target="_blank" rel="noopener noreferrer">
-                            Book Now
-                          </a>
-                        </Button>
+                        <a 
+                          href="https://wa.me/254706667129" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center text-sm font-medium h-9 px-4 bg-primary hover:bg-primary/90 text-white rounded-xl"
+                        >
+                          Book Now
+                        </a>
                       </div>
                     </DialogContent>
                   </Dialog>

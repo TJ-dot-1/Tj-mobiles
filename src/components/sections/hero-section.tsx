@@ -64,12 +64,20 @@ export function HeroSection() {
               
               <StaggerItem>
                 <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(0,123,255,0.3)] transition-all hover:shadow-[0_0_25px_rgba(0,123,255,0.5)] h-14 px-8 text-lg">
-                    <a href="https://wa.me/254706667129" target="_blank" rel="noopener noreferrer">Book Repair</a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="rounded-full h-14 px-8 text-lg border-primary/20 hover:bg-primary/5">
-                    <Link href="#accessories">Shop Accessories</Link>
-                  </Button>
+                  <a 
+                    href="https://wa.me/254706667129" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center font-medium whitespace-nowrap transition-all rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(0,123,255,0.3)] hover:shadow-[0_0_25px_rgba(0,123,255,0.5)] h-14 px-8 text-lg"
+                  >
+                    Book Repair
+                  </a>
+                  <Link 
+                    href="#accessories"
+                    className="inline-flex items-center justify-center font-medium whitespace-nowrap transition-all rounded-full h-14 px-8 text-lg border border-primary/20 hover:bg-primary/5 text-foreground bg-background hover:bg-muted"
+                  >
+                    Shop Accessories
+                  </Link>
                 </div>
               </StaggerItem>
             </StaggerContainer>
