@@ -43,13 +43,7 @@ export function HeroSection() {
           {/* Text Content */}
           <div className="max-w-2xl">
             <StaggerContainer delayChildren={0.2} staggerChildren={0.15}>
-              <StaggerItem>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium mb-6">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  #1 Phone Repair Shop
-                </div>
-              </StaggerItem>
-              
+
               <StaggerItem>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold tracking-tight mb-6 text-foreground">
                   Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">Phone Repairs</span> Done Right.
