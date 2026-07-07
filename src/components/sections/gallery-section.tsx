@@ -77,9 +77,9 @@ export function GallerySection() {
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
               <img 
-                src="https://images.unsplash.com/photo-1574676643665-c3cde3b1ad1e?q=80&w=1200&auto=format&fit=crop" 
+                src="/cracked-screen.png" 
                 alt="Damaged phone" 
-                className="w-full h-full object-cover pointer-events-none filter grayscale sepia-[0.3]"
+                className="w-full h-full object-cover pointer-events-none"
               />
               <div className="absolute bottom-6 left-6 bg-destructive text-white px-4 py-2 rounded-full font-bold text-sm backdrop-blur-md shadow-lg">
                 Before (Damaged)
