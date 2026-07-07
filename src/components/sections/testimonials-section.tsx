@@ -81,11 +81,6 @@ export function TestimonialsSection() {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name} 
-                  className="w-12 h-12 rounded-full object-cover border-2 border-primary/20" 
-                />
                 <div>
                   <div className="font-bold text-foreground">{testimonial.name}</div>
                   <div className="text-sm text-muted-foreground">{testimonial.location}</div>
