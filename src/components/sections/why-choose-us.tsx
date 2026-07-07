@@ -56,16 +56,7 @@ export function WhyChooseUsSection() {
               </p>
               
               <div className="flex items-center gap-4 mb-8 p-4 rounded-2xl bg-white/5 border border-border backdrop-blur-sm">
-                <div className="flex -space-x-4">
-                  {[...Array(4)].map((_, i) => (
-                    <img 
-                      key={i}
-                      className="w-12 h-12 rounded-full border-2 border-background object-cover" 
-                      src={`https://i.pravatar.cc/100?img=${i + 10}`} 
-                      alt="Customer" 
-                    />
-                  ))}
-                </div>
+
                 <div>
                   <div className="font-bold text-foreground">Trusted by 2,500+</div>
                   <div className="text-sm text-muted-foreground">happy customers in the area</div>
