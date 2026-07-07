@@ -66,9 +66,14 @@ export function Navbar() {
             </ul>
             <div className="flex items-center gap-4 border-l border-border pl-4">
               <ThemeToggle />
-              <Button className="rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(0,123,255,0.3)] transition-all hover:shadow-[0_0_25px_rgba(0,123,255,0.5)]">
+              <a 
+                href="https://wa.me/254706667129"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center text-sm font-medium h-9 px-4 rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(0,123,255,0.3)] transition-all hover:shadow-[0_0_25px_rgba(0,123,255,0.5)]"
+              >
                 Book Repair
-              </Button>
+              </a>
             </div>
           </nav>
 
@@ -105,9 +110,14 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Button className="w-full mt-4 rounded-full bg-primary hover:bg-primary/90 text-white">
+              <a 
+                href="https://wa.me/254706667129"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center text-sm font-medium h-9 px-4 w-full mt-4 rounded-full bg-primary hover:bg-primary/90 text-white"
+              >
                 Book Repair
-              </Button>
+              </a>
             </div>
           </motion.div>
         )}

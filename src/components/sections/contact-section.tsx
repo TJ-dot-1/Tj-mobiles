@@ -42,16 +42,20 @@ export function ContactSection() {
               </div>
 
               <div className="flex gap-4">
-                <Button asChild className="flex-1 rounded-2xl h-14 bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20">
-                  <a href="https://wa.me/254706667129" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="mr-2" /> WhatsApp Us
-                  </a>
-                </Button>
-                <Button asChild className="flex-1 rounded-2xl h-14 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20">
-                  <a href="tel:0706667129">
-                    <Phone className="mr-2" /> Call Now
-                  </a>
-                </Button>
+                <a 
+                  href="https://wa.me/254706667129" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center font-medium whitespace-nowrap transition-all flex-1 rounded-2xl h-14 bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20"
+                >
+                  <MessageCircle className="mr-2" /> WhatsApp Us
+                </a>
+                <a 
+                  href="tel:0706667129"
+                  className="inline-flex items-center justify-center font-medium whitespace-nowrap transition-all flex-1 rounded-2xl h-14 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20"
+                >
+                  <Phone className="mr-2" /> Call Now
+                </a>
               </div>
             </div>
           </FadeIn>
