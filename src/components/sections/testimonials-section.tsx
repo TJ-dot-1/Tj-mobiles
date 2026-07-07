@@ -7,32 +7,32 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    location: "San Francisco, CA",
+    name: "Mercy Wanjiku",
+    location: "Nairobi CBD",
     review: "Incredible service! They fixed my shattered iPhone screen in 20 minutes flat. It looks brand new and the staff was extremely friendly. Highly recommend TJ Phone Repairs!",
     image: "https://i.pravatar.cc/150?img=1"
   },
   {
-    name: "Michael Chen",
-    location: "San Jose, CA",
+    name: "Brian Ochieng",
+    location: "Westlands, Nairobi",
     review: "I thought my water-damaged phone was completely dead. These guys managed to recover all my photos and fix the motherboard. Absolute lifesavers!",
     image: "https://i.pravatar.cc/150?img=11"
   },
   {
-    name: "Emily Rodriguez",
-    location: "Oakland, CA",
-    review: "Best prices in the Bay Area. I got my iPad battery replaced and bought a new protective case. The quality of their accessories is top-notch.",
+    name: "Fatuma Hassan",
+    location: "Mombasa",
+    review: "Best prices in town. I got my iPad battery replaced and bought a new protective case. The quality of their accessories is top-notch.",
     image: "https://i.pravatar.cc/150?img=5"
   },
   {
-    name: "David Kim",
-    location: "Palo Alto, CA",
+    name: "Kevin Kamau",
+    location: "Thika",
     review: "Very professional and transparent about pricing. No hidden fees. They explained exactly what was wrong with my charging port before fixing it.",
     image: "https://i.pravatar.cc/150?img=14"
   },
   {
-    name: "Jessica Smith",
-    location: "Berkeley, CA",
+    name: "Grace Achieng",
+    location: "Kisumu",
     review: "Got my Samsung Galaxy screen fixed here. The colors and touch sensitivity are perfect, just like the original. Great warranty too!",
     image: "https://i.pravatar.cc/150?img=9"
   }
