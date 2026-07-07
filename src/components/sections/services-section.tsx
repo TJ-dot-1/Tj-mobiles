@@ -63,10 +63,8 @@ export function ServicesSection() {
                   </div>
                   
                   <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="ghost" className="w-full text-primary hover:text-white hover:bg-primary transition-colors group-hover:bg-primary/10 group-hover:text-primary dark:group-hover:text-white dark:group-hover:bg-primary">
-                        Learn More
-                      </Button>
+                    <DialogTrigger render={<Button variant="ghost" className="w-full text-primary hover:text-white hover:bg-primary transition-colors group-hover:bg-primary/10 group-hover:text-primary dark:group-hover:text-white dark:group-hover:bg-primary" />}>
+                      Learn More
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px] bg-background border-border">
                       <DialogHeader>
